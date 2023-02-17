@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='./css/styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>Greate Number Game</title>
+</head>
+<body>
+	<div class="container">
+		<h1 class="text-center mb-4">Guess the number between 1 and 100</h1>
+		{% if message %}
+			{% if message == 'Your guess is too high!' %}
+				<p class="too-high text-center">{{ message }}</p>
+			{% elif message == 'Your guess is too low!' %}
+				<p class="too-low text-center">{{ message }}</p>
+			{% else %}
+				<p class="right-answer text-center">{{ message }}</p>
+			{% endif %}
+		{% endif %}
+        <p class="text-center">Number of attempts: {{ session.get('attempts', 0) }}</p>
+        <form method="post" class="form-inline justify-content-center">
+            <div class="form-group mx-sm-3 mb-2">
+                <label for="guess" class="sr-only">Guess</label>
+                <input type="number" class="form-control form-control-lg" id="guess" name="guess" placeholder="Enter your guess" required>
+            </div>
+            <button type="submit" class="btn btn-lg btn-primary mb-2">Guess</button>
+        </form>
+	</div>
+</body>
+</html>
